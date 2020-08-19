@@ -2,13 +2,17 @@
 
  The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
 
-<img src="snake_game.gif"/>
 
 The Capstone Project provides a chance to integrate what we've learned throughout udacity c++ program. This project is an important part of my portfolio to share with current and future colleagues and employers.
 
 In this project, Snake game is extended, following the principles I have experienced throughout this Nanodegree Program. This project will demonstrate that I can independently create applications using a wide range of C++ features.
 SDL library is used in this project.
 some of the flags are as following..
+
+<img src="snake_game.gif"/>
+
+
+
 // triggers the program that controls 
     // your graphics hardware and sets flags 
     Uint32 render_flags = SDL_RENDERER_ACCELERATED; 

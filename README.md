@@ -80,6 +80,84 @@ These files define the Controller class. This class handles keyboard input using
 ------------- Link for SDL -------------
 https://wiki.libsdl.org/APIByCategory
 ----------------------------------------
+
+------ Loops, functions, I/O --------------
+The game loop is a while loop that runs continuously in your the and has three steps:
+
+Input: This step handles user input from a keyboard, joystick, game controller, or other input device.
+
+Update: This step uses the input to update the internal state of the game. The game state might include:
+        positions of characters in the game world
+        the speed, health, or inventory of characters in the game
+        how many points have been scored in the game so far
+        any other attributes or data in the game
+Each part of the game state might be updated independently of the input as well. For example, if a character is moving forward in the game with a given velocity, the update step might change the character's position without any additional input.
+
+Render: This step takes the game state and renders the state to the screen according to fixed rules. For example, a character might be rendered with a particular image or "sprite", or a texture might be applied to the background of the game window.
+
+One major benefit of using this design pattern in a game is that each part of the game loop can be implemented separately in the code. If you want to change the appearance of your game without making major changes to how the game works, you can just update the Rendering code. Similarly, you are free to modify how the gameplay works without changing the rendering or input portion of the code at all.
+---------------------------------------------------------------------------------------
+------- Object Oriented Programming ----------------
+The project code is organized into classes.
+Class Structure;The Snake game code consists of four main classes: Game, Snake, Controller, and Renderer
+Game Class can be seen as below;  class attributes to hold the data, and class methods to perform tasks.
+class Game {
+ public:
+  Game(std::size_t grid_width, std::size_t grid_height);
+  void Run(Controller const &controller, Renderer &renderer,
+           std::size_t target_frame_duration);
+  int GetScore() const;
+  int GetSize() const;
+
+ private:
+  Snake snake;
+  SDL_Point food;
+
+  std::random_device dev;
+  std::mt19937 engine;
+  std::uniform_int_distribution<int> random_w;
+  std::uniform_int_distribution<int> random_h;
+
+  int score{0};
+
+  void PlaceFood();
+  void Update();
+};
+----------------------------------
+All class members that are set to argument values are initialized through member initialization lists.
+class Snake {
+ public:
+  enum class Direction { kUp, kDown, kLeft, kRight };
+
+  Snake(int grid_width, int grid_height)
+      : grid_width(grid_width),
+        grid_height(grid_height),
+        head_x(grid_width / 2),
+        head_y(grid_height / 2) {}
+ ------------------------------------------
+All class member functions document their effects, either through function names, 
+comments, or formal documentation. Member functions do not change program state in undocumented ways.
+ 
+  float speed{0.1f};
+  int size{1};
+  bool alive{true};
+  float head_x;
+  float head_y;
+  std::vector<SDL_Point> body;
+  -------------------------------------
+Appropriate data and functions are grouped into classes. 
+Member data that is subject to an invariant is hidden from the user. (Private definitions provides this) 
+State is accessed via member functions.
+snake.Update();
+ private:
+  void UpdateHead();
+  void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
+  ------------------------------------------------------------------------------
+
+  
+
+
+
 ## Dependencies for Running Locally
 * cmake >= 3.7
   * All OSes: [click here for installation instructions](https://cmake.org/install/)

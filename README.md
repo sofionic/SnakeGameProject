@@ -81,6 +81,13 @@ These files define the Controller class. This class handles keyboard input using
 https://wiki.libsdl.org/APIByCategory
 ----------------------------------------
 
+-----
+ 
+The project uses Object Oriented Programming techniques.: The Capstopn project supports OOP technique and uses its dedicated principles.
+Classes use appropriate access specifiers for class members.: The classes uses dedicted class members to access class memebers. Class objects communicates with members by setters and getters.
+The project makes use of references in function declarations- : Project definies the function where references in declaraton are used: HeadDistanceTravel() in snake.h.
+
+
 ------ Loops, functions, I/O --------------
 The game loop is a while loop that runs continuously in your the and has three steps:
 
@@ -153,10 +160,18 @@ snake.Update();
   void UpdateHead();
   void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
   ------------------------------------------------------------------------------
-
-  
-
-
+Memory Management
+At least two variables are defined as references, or two functions use pass-by-reference in the project code.
+In the Controller.h controller class has as following
+class Controller {
+ public:
+  void HandleInput(bool &running, Snake &snake) const;
+------------------------------------------------------------
+The project uses at least one smart pointer: unique_ptr, shared_ptr, or weak_ptr. The project does not use raw pointers.
+ private:
+  SDL_Window *sdl_window;
+  SDL_Renderer *sdl_renderer;
+ ------------------------------------ 
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
